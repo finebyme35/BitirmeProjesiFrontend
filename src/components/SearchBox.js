@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import {  useNavigate } from 'react-router-dom'
 
 function SearchBox() {
     const [keyword, setKeyword] = useState('')
-
+    
     let navigate = useNavigate()
 
     const submitHandler = (e) => {
-        // e.preventDefault()
+        e.preventDefault()
+        const userInfo = localStorage.getItem('userInfo')
         if (keyword) {
+            if(userInfo.isAdmin){
+                navigate(`/admin/productlist/?keyword=${keyword}&page=1`)
+            }
             navigate(`/?keyword=${keyword}&page=1`)
-        } else {
-            navigate('/')
-        }
+        } 
     }
     return (
         <Form onSubmit={submitHandler} inline>

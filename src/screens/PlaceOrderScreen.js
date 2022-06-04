@@ -44,7 +44,7 @@ function PlaceOrderScreen() {
             taxPrice: cart.taxPrice,
             totalPrice: cart.totalPrice,
         }))
-        navigate(`/order/${order.id}`)
+        
     }
 
     return (
