@@ -4,16 +4,18 @@ import { Navbar, Nav, Container, Row, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userActions'
+import { useNavigate } from 'react-router-dom'
 
 function Header() {
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
-
+    const navigate = useNavigate();
     const dispatch = useDispatch()
 
     const logoutHandler = () => {
         dispatch(logout())
+        navigate('/')
     }
 
     return (
@@ -21,7 +23,7 @@ function Header() {
             <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
                 <Container>
                     <LinkContainer to='/'>
-                        <Navbar.Brand>ProShop</Navbar.Brand>
+                        <Navbar.Brand>BAPShop</Navbar.Brand>
                     </LinkContainer>
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -35,6 +35,7 @@ function App() {
               <Route path='/placeorder' element={<PlaceOrderScreen />} />
               <Route path='/order/:id' element={<OrderScreen />} />
               <Route path='/payment' element={<PaymentScreen />} />
+              <Route path='/products' element={<HomeScreen />} />
               <Route path='/product/:id' element={<ProductScreen />} />
               <Route path='/cart/:id' element={<CartScreen />} />
               <Route path='/cart' element={<CartScreen />} />

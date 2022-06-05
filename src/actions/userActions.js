@@ -104,6 +104,7 @@ export const register = (name, email, password) => async (dispatch) => {
             type: USER_REGISTER_SUCCESS,
             payload: data
         })
+        
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -136,7 +137,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -176,7 +177,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -223,7 +224,7 @@ export const listUsers = () => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -263,7 +264,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -303,7 +304,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 

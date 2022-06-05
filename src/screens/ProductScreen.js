@@ -39,7 +39,7 @@ function ProductScreen() {
     }, [dispatch, params.id, successProductReview])
 
     const addToCartHandler = (x) => {
-        navigate(`/cart/${params.id}`)
+        navigate(`/cart/${params.id}?qty=${qty}`)
     }
 
     const submitHandler = (e) => {

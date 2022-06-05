@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
@@ -13,10 +13,10 @@ function ShippingScreen() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const [address, setAddress] = useState(shippingAddress.address)
-    const [city, setCity] = useState(shippingAddress.city)
-    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-    const [country, setCountry] = useState(shippingAddress.country)
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [postalCode, setPostalCode] = useState('')
+    const [country, setCountry] = useState('')
 
     const submitHandler = (e) => {
         e.preventDefault()

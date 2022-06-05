@@ -110,7 +110,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -152,7 +152,7 @@ export const createProduct = () => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -194,7 +194,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
@@ -240,7 +240,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfoToken.access}`
+                Authorization: `Bearer ${userInfoToken.access  ? userInfoToken.access : userInfo.token.access}`
             }
         }
 
