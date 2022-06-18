@@ -29,6 +29,7 @@ function ProductScreen() {
     } = productReviewCreate
 
     useEffect(() => {
+        console.log();
         if (successProductReview) {
             setRating(0)
             setComment('')
@@ -74,7 +75,8 @@ function ProductScreen() {
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
-                                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
+                                            {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>}
+                                            <Rating value={product.reviews.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
@@ -155,6 +157,7 @@ function ProductScreen() {
 
                                     <ListGroup variant='flush'>
                                         {product.reviews.map((review) => (
+                                            
                                             <ListGroup.Item key={review.id}>
                                                 <strong>{review.name}</strong>
                                                 <Rating value={review.rating} color='#f8e825' />

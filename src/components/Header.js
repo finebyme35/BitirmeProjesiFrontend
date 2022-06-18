@@ -17,6 +17,11 @@ function Header() {
         dispatch(logout())
         navigate('/')
     }
+    const handleRequest = () => {
+        navigate('/profile')
+        window.location.reload()
+
+    }
 
     return (
         <header>
@@ -32,13 +37,13 @@ function Header() {
                         <Nav className="ml-auto">
 
                             <LinkContainer to='/cart'>
-                                <Nav.Link ><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
+                                <Nav.Link ><i className="fa fa-shopping-cart"></i>Cart</Nav.Link>
                             </LinkContainer>
 
                             {userInfo ? (
                                 <NavDropdown title={userInfo.name} id='username'>
-                                    <LinkContainer to='/profile'>
-                                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                                    <LinkContainer to='/profile' onClick={handleRequest}>
+                                        <NavDropdown.Item >Profile</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
@@ -46,7 +51,7 @@ function Header() {
                                 </NavDropdown>
                             ) : (
                                     <LinkContainer to='/login'>
-                                        <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                        <Nav.Link><i className="fa fa-user"></i>Login</Nav.Link>
                                     </LinkContainer>
                                 )}
 

@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { getOrderDetails, deliverOrder } from '../actions/orderActions'
+import { getOrderDetails, deliverOrder, payOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
 function OrderScreen() {
@@ -32,8 +32,6 @@ function OrderScreen() {
     if (!loading && !error) {
         order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     }
-
-
     
 
     useEffect(() => {
@@ -49,6 +47,7 @@ function OrderScreen() {
             dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
             if (!window) {
+                setSdkReady(true)
             } else {
                 setSdkReady(true)
             }
@@ -56,10 +55,13 @@ function OrderScreen() {
     }, [dispatch, order, orderId, successPay, successDeliver, navigate, userInfo])
 
 
-    
+    const successPaymentHandler = (paymentResult) => {
+        dispatch(payOrder(orderId, paymentResult))
+    }
 
     const deliverHandler = () => {
         dispatch(deliverOrder(order))
+
     }
 
     return loading ? (
@@ -176,12 +178,7 @@ function OrderScreen() {
                                     {!order.isPaid && (
                                         <ListGroup.Item>
                                             {loadingPay && <Loader />}
-
-                                            {!sdkReady ? (
-                                                <Loader />
-                                            ) : (
-                                                    <Button>Ödeme</Button>
-                                                )}
+                                            <Button onClick={() => successPaymentHandler(order.totalPrice)}>Pay</Button>
                                         </ListGroup.Item>
                                     )}
                                 </ListGroup>

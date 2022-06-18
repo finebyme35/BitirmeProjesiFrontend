@@ -2,6 +2,7 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 import Rating from './Rating'
 import { Link } from 'react-router-dom'
+import Message from './Message'
 
 function Product({ product }) {
     return (
@@ -19,7 +20,11 @@ function Product({ product }) {
 
                 <Card.Text as="div">
                     <div className="my-3">
-                        <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
+                        {product.reviews.length === 0 ? 
+                            <Message variant='info'>No Reviews</Message> : 
+                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
+                        }
+                        
                     </div>
                 </Card.Text>
 

@@ -13,6 +13,7 @@ function ProductCarousel() {
     const { error, loading, products } = productTopRated
 
     useEffect(() => {
+        
         dispatch(listTopProducts())
     }, [dispatch])
 
@@ -20,18 +21,20 @@ function ProductCarousel() {
         : error
             ? <Message variant='danger'>{error}</Message>
             : (
-                <Carousel pause='hover' className='bg-dark'>
-                    {products.map(product => (
-                        <Carousel.Item key={product.id}>
-                            <Link to={`/product/${product.id}`}>
-                                <Image src={product.image} alt={product.name} fluid />
-                                <Carousel.Caption className='carousel.caption'>
-                                    <h4>{product.name} (${product.price})</h4>
-                                </Carousel.Caption>
-                            </Link>
-                        </Carousel.Item>
-                    ))}
-                </Carousel>
+                
+                    <Carousel pause='hover' className='bg-dark'>
+                        {products.map(product => (
+                            <Carousel.Item key={product.id}>
+                                <Link to={`/product/${product.id}`}>
+                                    <Image src={product.image} alt={product.name} fluid />
+                                    <Carousel.Caption className='carousel.caption'>
+                                        <h4>{product.name} (${product.price})</h4>
+                                    </Carousel.Caption>
+                                </Link>
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
+            
             )
 
     )

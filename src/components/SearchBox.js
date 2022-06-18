@@ -23,7 +23,7 @@ function SearchBox() {
         }
     }
     return (
-        <Form onSubmit={submitHandler}>
+        <Form className="d-flex" onSubmit={submitHandler}>
             <Form.Control
                 type='text'
                 name='q'
