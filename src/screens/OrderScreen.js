@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +14,7 @@ function OrderScreen() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    const [sdkReady, setSdkReady] = useState(false)
+    // const [sdkReady, setSdkReady] = useState(false)
 
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, error, loading } = orderDetails
@@ -45,13 +45,7 @@ function OrderScreen() {
             dispatch({ type: ORDER_DELIVER_RESET })
 
             dispatch(getOrderDetails(orderId))
-        } else if (!order.isPaid) {
-            if (!window) {
-                setSdkReady(true)
-            } else {
-                setSdkReady(true)
-            }
-        }
+        } 
     }, [dispatch, order, orderId, successPay, successDeliver, navigate, userInfo])
 
 
@@ -88,7 +82,7 @@ function OrderScreen() {
                                     </p>
 
                                     {order.isDelivered ? (
-                                        <Message variant='success'>Delivered on {order.deliveredAt}</Message>
+                                        <Message variant='success'>Delivered on {order.deliveredAt.replace("T", " ") }</Message>
                                     ) : (
                                             <Message variant='warning'>Not Delivered</Message>
                                         )}
@@ -101,7 +95,7 @@ function OrderScreen() {
                                         {order.paymentMethod}
                                     </p>
                                     {order.isPaid ? (
-                                        <Message variant='success'>Paid on {order.paidAt}</Message>
+                                        <Message variant='success'>Paid on {order.paidAt.replace("T", " ")}</Message>
                                     ) : (
                                             <Message variant='warning'>Not Paid</Message>
                                         )}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function Rating({ value, text, color }) {
     
@@ -45,7 +45,7 @@ function Rating({ value, text, color }) {
 
             <span>
                 <i style={{ color }} className={
-                    value == 5
+                    value >= 5
                         ? 'fa fa-star' : ''
                         
                 }>
